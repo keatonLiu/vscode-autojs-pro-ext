@@ -1,0 +1,376 @@
+{
+	"name": "auto-js-pro-ext",
+	"displayName": "Auto.js-Pro-Ext",
+	"description": "The debugger plugin for Auto.js Pro.",
+	"icon": "assets/favicon.png",
+	"version": "9.0.9",
+	"publisher": "hyb1996",
+	"repository": {
+		"type": "other",
+		"url": "https://blog.autojs.org/2022/10/15/vscode-debug-v9/"
+	},
+	"engines": {
+		"vscode": "^1.60.0"
+	},
+	"categories": [
+		"Other",
+		"Snippets",
+		"Debuggers"
+	],
+	"activationEvents": [
+		"onCommand:autojspor.listAll",
+		"onCommand:autojspor.help",
+		"onCommand:autojspro.connect",
+		"onCommand:autojspro.disconnectAll",
+		"onCommand:autojspro.scanDevices",
+		"onCommand:autojspro.run",
+		"onCommand:autojspro.stop",
+		"onCommand:autojspro.stopAll",
+		"onCommand:autojspro.save",
+		"onCommand:autojspro.newV8Project",
+		"onCommand:autojspro.newV9Project",
+		"onCommand:autojspro.newV8ProjectOnRoot",
+		"onCommand:autojspro.newV9ProjectOnRoot",
+		"onCommand:autojspro.runFile",
+		"onCommand:autojspro.runProject",
+		"onCommand:autojspro.saveProject",
+		"onCommand:autojspro.inspectLayout",
+		"onCommand:autojspro.addDebugConfig",
+		"onCommand:autojspro.browseDeviceFiles",
+		"onCommand:autojspro.selectDevice",
+		"onCommand:autojspro.refreshDirectory",
+		"onDebug",
+		"onDebugDynamicConfigurations:autojs",
+		"onLanguage:javascript",
+		"onLanguage:json",
+		"onLanguage:jsonc"
+	],
+	"main": "./dist/extension",
+	"contributes": {
+		"breakpoints": [
+			{
+				"language": "javascript"
+			}
+		],
+		"debuggers": [
+			{
+				"type": "autojs",
+				"label": "Auto.js Pro Debug",
+				"runtime": "node",
+				"languages": [
+					"javascript"
+				],
+				"configurationAttributes": {
+					"launch": {
+						"required": [],
+						"properties": {
+							"main": {
+								"type": "string",
+								"description": "入口代码文件的相对路径，不填时则使用当前正在编辑的文件为主脚本"
+							},
+							"rootDir": {
+								"type": "string",
+								"description": "入口代码文件所在的工作区文件夹uri"
+							},
+							"stopOnEntry": {
+								"type": "boolean",
+								"description": "启动调试时是否在第一行停下",
+								"default": true
+							}
+						}
+					}
+				},
+				"initialConfigurations": [
+					{
+						"type": "autojs",
+						"request": "launch",
+						"stopOnEntry": true,
+						"name": "[Auto.js Pro调试]"
+					}
+				],
+				"configurationSnippets": [
+					{
+						"label": "Auto.js Pro Debug: Launch",
+						"description": "A new configuration for 'debugging' a user selected javascript file.",
+						"body": {
+							"type": "autojs",
+							"request": "launch",
+							"main": "main.js",
+							"stopOnEntry": true,
+							"device": "[current]",
+							"name": "[Auto.js Pro调试]使用最近设备"
+						}
+					}
+				]
+			}
+		],
+		"commands": [
+			{
+				"command": "autojspro.listAll",
+				"title": "功能列表(All Commands)",
+				"icon": "resources/icon_autojs_logo.png",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.help",
+				"title": "使用教程(Help)",
+				"icon": "resources/icon_autojs_logo.png",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.connect",
+				"title": "连接到新设备(Connect)",
+				"icon": "resources/icon_autojs_logo.png",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.selectDevice",
+				"title": "选择设备(Select Device)",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.scanDevices",
+				"title": "重新扫描设备(Scan Devices)",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.run",
+				"title": "运行(Run)",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.runProject",
+				"title": "运行项目(Run Project)",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.runFile",
+				"title": "运行单文件(Run File)",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.stopAll",
+				"title": "停止所有脚本(Stop All)",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.stop",
+				"title": "停止当前脚本(Stop)",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.inspectLayout",
+				"title": "布局分析(Inspect Layout)",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.browseDeviceFiles",
+				"title": "浏览设备文件(Browse Device Files)",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.save",
+				"title": "保存当前文件(Save)",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.newV8Project",
+				"title": "新建第一代API项目(Rhino)",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.newV9Project",
+				"title": "新建第二代API项目(Node.js)",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.newV8ProjectOnRoot",
+				"title": "在工作区建立第一代API项目(Rhino)",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.newV9ProjectOnRoot",
+				"title": "在工作区建立第二代API项目(Node.js)",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.saveProject",
+				"title": "保存项目(Save Project)",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.rerun",
+				"title": "重新运行(Rerun)",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.addDebugConfig",
+				"title": "增加调试设备配置(Add Debug Config)",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.disconnectAll",
+				"title": "断开所有连接(Disconnect)",
+				"category": "Auto.js Pro"
+			},
+			{
+				"command": "autojspro.refreshDirectory",
+				"title": "刷新文件(Refresh Directory)",
+				"category": "Auto.js Pro"
+			}
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "autojspro.newV8ProjectOnRoot",
+					"when": "false"
+				},
+				{
+					"command": "autojspro.newV9ProjectOnRoot",
+					"when": "false"
+				}
+			],
+			"editor/title": [
+				{
+					"when": "resourceLangId == javascript || resourceLangId == json || resourceLangId == jsonc",
+					"command": "autojspro.listAll",
+					"group": "navigation"
+				}
+			],
+			"explorer/context": [
+				{
+					"submenu": "autojspro.newProject",
+					"group": "2_workspace"
+				},
+				{
+					"command": "autojspro.refreshDirectory",
+					"group": "2_workspace",
+					"when": "resourceScheme == autojsvfs"
+				}
+			],
+			"autojspro.newProject": [
+				{
+					"command": "autojspro.newV8Project",
+					"group": "2_workspace"
+				},
+				{
+					"command": "autojspro.newV9Project",
+					"group": "2_workspace"
+				},
+				{
+					"command": "autojspro.newV8ProjectOnRoot",
+					"group": "2_workspace"
+				},
+				{
+					"command": "autojspro.newV9ProjectOnRoot",
+					"group": "2_workspace"
+				}
+			]
+		},
+		"submenus": [
+			{
+				"id": "autojspro.newProject",
+				"label": "新建Auto.js Pro项目"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "autojspro.run",
+				"key": "f5",
+				"mac": "f5",
+				"win": "f5"
+			},
+			{
+				"command": "autojspro.stop",
+				"key": "shift+f5",
+				"mac": "shift+f5",
+				"win": "shift+f5"
+			},
+			{
+				"command": "autojspro.runOnDevice",
+				"key": "ctrl+f5",
+				"mac": "cmd+f5",
+				"win": "ctrl+f5"
+			},
+			{
+				"command": "autojspro.rerun",
+				"key": "ctrl+shift+f5",
+				"mac": "cmd+shift+f5",
+				"win": "ctrl+shift+f5"
+			},
+			{
+				"command": "autojspro.save",
+				"key": "ctrl+shift+S",
+				"mac": "cmd+shift+S",
+				"win": "ctrl+shift+S"
+			}
+		],
+		"terminal": {
+			"profiles": [
+				{
+					"title": "Auto.js Pro远程终端",
+					"id": "autojspro.term"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "webpack --mode production",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch"
+	},
+	"devDependencies": {
+		"@types/bonjour": "^3.5.10",
+		"@types/ftp": "^0.3.33",
+		"@types/http-server": "^0.12.1",
+		"@types/jsftp": "^2.1.2",
+		"@types/mocha": "5.2.7",
+		"@types/node": "^14.14.31",
+		"@types/uuid": "^8.3.4",
+		"@types/vscode": "^1.60.0",
+		"mocha": "^6.2.3",
+		"shebang-loader": "0.0.1",
+		"terser-webpack-plugin": "^5.3.6",
+		"ts-loader": "^9.4.1",
+		"tslint": "5.18.0",
+		"typescript": "4.8.3",
+		"vsce": "^2.11.0",
+		"webpack": "^5.74.0",
+		"webpack-cli": "^4.10.0"
+	},
+	"dependencies": {
+		"@types/archiver": "^2.1.1",
+		"@types/stream-buffers": "^3.0.2",
+		"@types/ws": "^8.5.3",
+		"archiver": "^2.1.1",
+		"await-notify": "1.0.1",
+		"axios": "^0.27.2",
+		"bonjour": "^3.5.0",
+		"get-port": "^5.0.0",
+		"http-server": "^14.1.1",
+		"ignore": "^5.2.0",
+		"jsftp": "^2.1.3",
+		"json-rpc-2.0": "^1.4.1",
+		"parse-listing": "^1.1.3",
+		"pureimage": "^0.3.2",
+		"q": "^1.5.1",
+		"stream-buffers": "^3.0.2",
+		"uuid": "^9.0.0",
+		"vscode-debugadapter": "1.40.0",
+		"ws": "^8.9.0"
+	},
+	"__npminstall_done": false,
+	"__metadata": {
+		"id": "99d5196e-6c19-46b8-8b22-59e58b2d2513",
+		"publisherId": "9b91d20a-fe8d-4c8f-aa0f-f9349c85254f",
+		"publisherDisplayName": "hyb1996",
+		"targetPlatform": "undefined",
+		"isApplicationScoped": false,
+		"updated": true,
+		"isPreReleaseVersion": false,
+		"installedTimestamp": 1669621514676,
+		"preRelease": false
+	}
+}
